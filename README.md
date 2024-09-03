@@ -75,6 +75,9 @@ server {
 ```
 docker-compose up
 docker-compose up -d
+docker-compose down
+
+docker exec -it php-web-1 bash
 ```
 
 docker volume baimenak aldatu: 
