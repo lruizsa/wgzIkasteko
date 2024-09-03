@@ -77,7 +77,7 @@ docker-compose up
 docker-compose up -d
 docker-compose down
 
-docker-compose logs -f
+docker logs php-web-1 -f
 
 docker exec -it php-web-1 bash
 ```
