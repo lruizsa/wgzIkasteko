@@ -22,7 +22,7 @@ Docker desktop instalatu:
 - http://localhost:8080  gida jarraitu
 
 Visual Code:
-- Visual Code docker addon?
+- addons: 'WSL', 'docker'
 
 git
 - git, github
