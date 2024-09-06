@@ -25,7 +25,17 @@ Visual Code:
 - addons: 'WSL', 'docker'
 
 git
-- git, github
+- https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
+
+C:\Users\<user>\.gitconfig
+```
+[user]
+	name = zmwebdev
+	email = zmwebdev@gmail.com
+```
+
+github
+
 
 PHP
 - https://marc.it/dockerize-application-with-nginx-and-php8/
