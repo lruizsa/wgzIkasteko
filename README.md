@@ -22,7 +22,7 @@ Docker desktop instalatu:
 - http://localhost:8080  gida jarraitu
 
 Visual Code:
-- addons: 'WSL', 'docker'
+- addons: 'WSL', 'docker', PHP Tools for VS Code, ...
 
 git
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
