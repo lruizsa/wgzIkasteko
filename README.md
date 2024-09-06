@@ -97,6 +97,9 @@ docker volume baimenak aldatu:
 sudo chown ubuntu:ubuntu -R src
 ```
 
+Garapen ingurunerako beste aukerak:
+- XAMPP: https://www.apachefriends.org/, MAMP, ...
+- visual code studio web: https://code.visualstudio.com/docs/editor/vscode-web
 
 ### PHP tutoriala
 
