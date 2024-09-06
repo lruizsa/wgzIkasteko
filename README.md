@@ -30,8 +30,8 @@ git
 C:\Users\<user>\.gitconfig
 ```
 [user]
-	name = zmwebdev
-	email = zmwebdev@gmail.com
+	name = izena
+	email = izena@mail.eus
 ```
 
 github
