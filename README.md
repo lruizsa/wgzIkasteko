@@ -103,6 +103,6 @@ Garapen ingurunerako beste aukerak:
 
 ### PHP tutoriala
 
-- https://phptherightway.com/
+- [w3schools](https://www.w3schools.com/php/default.asp)
 - https://phptherightway.com/
 
