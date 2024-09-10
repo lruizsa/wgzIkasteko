@@ -24,8 +24,6 @@ Docker desktop instalatu:
 
 Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu.
 
-VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
-
 Visual Code:
 - addons: 'WSL', 'docker', PHP Tools for VS Code, ...
 - https://dev.to/arafatweb/top-10-vs-code-extensions-for-php-developers-in-2024-2m08
@@ -106,7 +104,9 @@ sudo chown ubuntu:ubuntu -R src
 Garapen ingurunerako beste aukerak:
 - XAMPP: https://www.apachefriends.org/, MAMP, ...
 - visual code studio web: https://code.visualstudio.com/docs/editor/vscode-web
-
+- VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
+- VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
+  
 ### PHP tutoriala
 
 - [w3schools](https://www.w3schools.com/php/default.asp)
