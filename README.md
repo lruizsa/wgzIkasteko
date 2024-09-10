@@ -15,15 +15,21 @@ PHP-n "Hello World" egin Docker eta Visual Code erabiliz
 Docker:
 - Docker desktop
 - Portainer CE
+- https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
   
 Docker desktop instalatu: 
 - Run Docker in Windows - Setup, Docker Compose, Extensions: https://www.youtube.com/watch?v=cMyoSkQZ41E
 - docker run -d -p 8080:80 docker/getting-started
 - http://localhost:8080  gida jarraitu
 
+Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu.
+
+VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
+
 Visual Code:
 - addons: 'WSL', 'docker', PHP Tools for VS Code, ...
-
+- https://dev.to/arafatweb/top-10-vs-code-extensions-for-php-developers-in-2024-2m08
+  
 git
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
 
