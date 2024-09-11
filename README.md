@@ -27,7 +27,7 @@ Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu.
 Visual Code:
 - addons: 'WSL', 'docker', PHP Tools for VS Code, ...
 - https://dev.to/arafatweb/top-10-vs-code-extensions-for-php-developers-in-2024-2m08
-- "Install from VSIX" "marketplace-n" sartzeko baimenik ez bait dugu, extensions-ak eskuz instalatuko dira
+- "Install from VSIX" "marketplace-n" sartzeko baimenik ez bait dugu, extensions-ak eskuz instalatuko dira. https://www.vsixhub.com/
   
 git
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
