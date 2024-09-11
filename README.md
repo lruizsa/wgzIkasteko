@@ -31,7 +31,7 @@ Visual Code:
 git
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
 
-C:\Users\<user>\.gitconfig
+git Windows: C:\Users\<user>\.gitconfig
 ```
 [user]
 	name = izena
