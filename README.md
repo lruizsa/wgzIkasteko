@@ -38,7 +38,8 @@ git Windows: C:\Users\<user>\.gitconfig
 	email = izena@mail.eus
 ```
 
-github
+github ssh bidez:
+- https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 
 PHP
