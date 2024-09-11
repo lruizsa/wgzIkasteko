@@ -14,7 +14,7 @@ PHP-n "Hello World" egin Docker eta Visual Code erabiliz
 
 Docker:
 - Docker desktop
-- Portainer CE
+- Portainer CE: https://docs.portainer.io/start/install-ce
 - https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
   
 Docker desktop instalatu: 
@@ -100,8 +100,6 @@ docker volume baimenak aldatu:
 ```
 sudo chown ubuntu:ubuntu -R src
 ```
-
-Dokcer GUI: portainer: https://docs.portainer.io/start/install-ce
 
 Garapen ingurunerako beste aukerak:
 - XAMPP: https://www.apachefriends.org/, MAMP, ...
