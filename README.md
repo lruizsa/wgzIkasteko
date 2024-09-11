@@ -101,9 +101,12 @@ docker volume baimenak aldatu:
 sudo chown ubuntu:ubuntu -R src
 ```
 
+Dokcer GUI: portainer: https://docs.portainer.io/start/install-ce
+
 Garapen ingurunerako beste aukerak:
 - XAMPP: https://www.apachefriends.org/, MAMP, ...
 - visual code studio web: https://code.visualstudio.com/docs/editor/vscode-web
+- VirtualBox-en ubuntu server + GUI (https://thelinuxforum.com/articles/919-how-to-install-gui-on-ubuntu-24-04-server)
 - VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
 - VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
   
