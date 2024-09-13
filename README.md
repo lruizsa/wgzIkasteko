@@ -119,6 +119,7 @@ Garapen ingurunerako beste aukerak:
 - VirtualBox-en ubuntu server + GUI (https://thelinuxforum.com/articles/919-how-to-install-gui-on-ubuntu-24-04-server)
 - VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
 - VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
+- https://vscodium.com/#install
   
 ### PHP tutoriala
 
