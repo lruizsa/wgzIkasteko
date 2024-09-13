@@ -22,7 +22,7 @@ Docker desktop instalatu:
 - docker run -d -p 8080:80 docker/getting-started
 - http://localhost:8080  gida jarraitu
 
-Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu.
+Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu. Konpontzeko, erabiltzailea "docker" talde lokalean sartu.
 
 codium (visual code open source) addons-ak instalatu daitezke:
 - https://vscodium.com/#install
