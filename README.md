@@ -24,6 +24,9 @@ Docker desktop instalatu:
 
 Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu.
 
+codium (visual code open source) addons-ak instalatu daitezke:
+- https://vscodium.com/#install
+
 Visual Code:
 - addons: 'WSL', 'docker', PHP Tools for VS Code, ...
 - https://dev.to/arafatweb/top-10-vs-code-extensions-for-php-developers-in-2024-2m08
