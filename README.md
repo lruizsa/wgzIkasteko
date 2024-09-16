@@ -54,7 +54,7 @@ ssh-ed25519 AAA.............jaEhduMSb your_email@example.com
 
 git aginduak:
 ```
-git clone ...
+git clone git@github.com:...
 git status
 git add ..
 git commit -am "..."
