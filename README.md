@@ -42,6 +42,12 @@ git Windows: C:\Users\<user>\.gitconfig
 	email = izena@mail.eus
 ```
 
+git linux:
+```
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+```
+
 github ssh bidez:
 - https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 - https://docs.github.com/en/authentication/connecting-to-github-with-ssh
