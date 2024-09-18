@@ -142,3 +142,6 @@ Garapen ingurunerako beste aukerak:
 - [w3schools](https://www.w3schools.com/php/default.asp)
 - https://phptherightway.com/
 
+#### Ariketa: HTML-ko taula array-ak erabiliz
+
+"HTML-ko taula batean inprimantu, matrize batean ([multidimensional array](https://www.w3schools.com/pHP/php_arrays_multidimensional.asp)) batean gordeak dauden datuak."
