@@ -150,9 +150,9 @@ HTML-ko taula batean inprimantu, matrize batean ([multidimensional array](https:
 <?php
 // Multidimensional array-a definitu
 $data = [
-    ['Izena' => 'Ane', 'Adina' => 25, 'Hiriburua' => 'Bilbao'],
+    ['Izena' => 'Ane', 'Adina' => 25, 'Hiriburua' => 'Bilbo'],
     ['Izena' => 'Iñaki', 'Adina' => 30, 'Hiriburua' => 'Donostia'],
-    ['Izena' => 'Marta', 'Adina' => 22, 'Hiriburua' => 'Gasteiz'],
+    ['Izena' => 'Koxme', 'Adina' => 22, 'Hiriburua' => 'Iruñea'],
 ];
 
 // HTML-taula sortu
@@ -186,10 +186,10 @@ Aldaera: HTML-ko taula bat itzuli beharrean, JSON formatuan itzuli dezala.
 $data = [
     ['Izena' => 'Ane', 'Adina' => 25, 'Hiriburua' => 'Bilbao'],
     ['Izena' => 'Iñaki', 'Adina' => 30, 'Hiriburua' => 'Donostia'],
-    ['Izena' => 'Marta', 'Adina' => 22, 'Hiriburua' => 'Gasteiz'],
+    ['Izena' => 'Koxme', 'Adina' => 22, 'Hiriburua' => 'Iruñea'],
 ];
 
-// JSON formatuan konbertitu
+// JSON formatura bihurtu
 $jsonData = json_encode($data, JSON_PRETTY_PRINT);
 
 // JSON-a inprimatu
@@ -198,7 +198,8 @@ echo $jsonData;
 ?>
 ```
 
-#### Ariketa: 3Dko irudia sortu array batean gordeta dauden puntuekin
+#### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
 
 Aukera 1: PHP-k irudia sortu eta bidali (PHPko GD liburutegia erabili adibidez)
+
 Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
