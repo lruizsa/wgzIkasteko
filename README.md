@@ -342,5 +342,38 @@ fetch('ikasleak.php')
 </html>
 ```
 
+document.createElement eta errenkada.appendChild erabili beharrean beste modu batetara (hau JavaScript da!):
+```javascript
+...
+<script>
+// Fetch metodoa erabiliz PHPtik JSON datuak jaso
+fetch('ikasleak.php')
+    .then(response => response.json())  // JSON erantzuna lortu
+    .then(ikasleak => {
+        // Taula elementua eskuratu
+        const taula = document.getElementById("ikasleTaula");
+
+        // JSON datuak erabiliz taula sortu
+        let taulaEdukia = "";  // Taularako lerroak gordetzeko string bat
+        ikasleak.forEach(function(ikaslea) {
+            // Lerroa string moduan sortu
+            taulaEdukia += `
+                <tr>
+                    <td>${ikaslea["Izen-abizenak"]}</td>
+                    <td>${ikaslea["Adina"]}</td>
+                    <td>${ikaslea["Emaitza"]}</td>
+                </tr>
+            `;
+        });
+
+        // String moduan sortutako taula lerroak taulan txertatu
+        taula.innerHTML += taulaEdukia;
+    })
+    .catch(error => console.error('Errorea datuak kargatzean:', error));  // Akatsen tratamendua
+</script>
+...
+```
+
+
 http://localhost:8080/ikasleak.html
 
