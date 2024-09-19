@@ -178,25 +178,169 @@ echo "</table>";
 ?>
 ```
 
-Aldaera: HTML-ko taula bat itzuli beharrean, JSON formatuan itzuli dezala.
+beste adibide bat:
 
 ```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ikasleen Datuak Taula batean</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Ikasleen Datuak</h2>
+
 <?php
-// Multidimensional array-a definitu
-$data = [
-    ['Izena' => 'Ane', 'Adina' => 25, 'Hiriburua' => 'Bilbao'],
-    ['Izena' => 'Iñaki', 'Adina' => 30, 'Hiriburua' => 'Donostia'],
-    ['Izena' => 'Koxme', 'Adina' => 22, 'Hiriburua' => 'Iruñea'],
-];
+// Matrize multidimentsional bat definitu
+$ikasleak = array(
+    array("Izen-abizenak" => "Jon Aizpuru", "Adina" => 22, "Emaitza" => 90),
+    array("Izen-abizenak" => "Maite Ibarrola", "Adina" => 21, "Emaitza" => 85),
+    array("Izen-abizenak" => "Ane Olaizola", "Adina" => 23, "Emaitza" => 88),
+    array("Izen-abizenak" => "Xabier Elizondo", "Adina" => 22, "Emaitza" => 92)
+);
 
-// JSON formatura bihurtu
-$jsonData = json_encode($data, JSON_PRETTY_PRINT);
-
-// JSON-a inprimatu
-header('Content-Type: application/json');
-echo $jsonData;
 ?>
+
+<!-- HTMLko taula sortu -->
+<table>
+    <tr>
+        <th>Izen-abizenak</th>
+        <th>Adina</th>
+        <th>Emaitza</th>
+    </tr>
+
+    <?php
+    // Datuak matrizeatik ateratzen eta taulara gehitzen
+    foreach ($ikasleak as $ikaslea) {
+        echo "<tr>";
+        echo "<td>" . $ikaslea["Izen-abizenak"] . "</td>";
+        echo "<td>" . $ikaslea["Adina"] . "</td>";
+        echo "<td>" . $ikaslea["Emaitza"] . "</td>";
+        echo "</tr>";
+    }
+    ?>
+
+</table>
+
+</body>
+</html>
+
+```
+
+Aldaera: HTML-ko taula bat itzuli beharrean, JSON formatuan itzuli dezala.
+
+'ikasleak.php'
+```php
+<?php
+// Matrize multidimentsional bat definitu
+$ikasleak = array(
+    array("Izen-abizenak" => "Jon Aizpuru", "Adina" => 22, "Emaitza" => 90),
+    array("Izen-abizenak" => "Maite Ibarrola", "Adina" => 21, "Emaitza" => 85),
+    array("Izen-abizenak" => "Ane Olaizola", "Adina" => 23, "Emaitza" => 88),
+    array("Izen-abizenak" => "Xabier Elizondo", "Adina" => 22, "Emaitza" => 92)
+);
+
+// JSON formatura bihurtu eta itzuli
+header('Content-Type: application/json');
+echo json_encode($ikasleak, JSON_PRETTY_PRINT);
+?>
+
+
 ```
 
 Orain, JS erabiliz JSON-ari formatua eman Taula bihurtuz:
+
+'ikasleak.html'
+```html
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikasleen Datuak Taulan</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Ikasleen Datuak</h2>
+<!-- Taula hemen sortuko dugu -->
+<table id="ikasleTaula">
+    <tr>
+        <th>Izen-abizenak</th>
+        <th>Adina</th>
+        <th>Emaitza</th>
+    </tr>
+</table>
+
+<script>
+// Fetch metodoa erabiliz PHPtik JSON datuak jaso
+fetch('ikasleak.php')
+    .then(response => response.json())  // JSON erantzuna lortu
+    .then(ikasleak => {
+        // Taula elementua eskuratu
+        const taula = document.getElementById("ikasleTaula");
+
+        // JSON datuak erabiliz taula sortu
+        ikasleak.forEach(function(ikaslea) {
+            // Lerro berri bat sortu
+            const errenkada = document.createElement("tr");
+
+            // Izen-abizenak
+            const izenAbizenak = document.createElement("td");
+            izenAbizenak.textContent = ikaslea["Izen-abizenak"];
+            errenkada.appendChild(izenAbizenak);
+
+            // Adina
+            const adina = document.createElement("td");
+            adina.textContent = ikaslea["Adina"];
+            errenkada.appendChild(adina);
+
+            // Emaitza
+            const emaitza = document.createElement("td");
+            emaitza.textContent = ikaslea["Emaitza"];
+            errenkada.appendChild(emaitza);
+
+            // Lerroa taulara gehitu
+            taula.appendChild(errenkada);
+        });
+    })
+    .catch(error => console.error('Errorea datuak kargatzean:', error));  // Akatsen tratamendua
+</script>
+
+</body>
+</html>
+```
+
+http://localhost:8080/ikasleak.html
 
