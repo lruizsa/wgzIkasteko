@@ -377,3 +377,8 @@ fetch('ikasleak.php')
 
 http://localhost:8080/ikasleak.html
 
+
+#### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
+
+- Aukera 1: PHP-k irudia sortu eta bidali (PHPko liburutegia erabili behar da, horrek 'docker' konfigurazioa aldatzea eskatuko du)
+- Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
