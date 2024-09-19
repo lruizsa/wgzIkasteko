@@ -198,8 +198,5 @@ echo $jsonData;
 ?>
 ```
 
-#### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
+Orain, JS erabiliz JSON-ari formatua eman Taula bihurtuz:
 
-Aukera 1: PHP-k irudia sortu eta bidali (PHPko GD liburutegia erabili adibidez)
-
-Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
