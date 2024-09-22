@@ -401,6 +401,44 @@ http://localhost:8080/ikasleak.html
 - Aukera 1: PHP-k irudia sortu eta bidali (PHPko liburutegia erabili behar da, horrek 'docker' konfigurazioa aldatzea eskatuko du)
 - Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
 
+
+#### funtzioak reference value
+
+```php
+<?php
+
+function gehitu_balioa($balioa) {
+    $balioa += 5;
+    return $balioa;
+}
+
+function add_five_value($value) {
+    $value += 5;
+}
+
+
+function add_five(&$value) {
+    $value += 5;
+}
+
+$num = 2;
+
+add_five_value($num);
+echo $num;
+
+echo "<br>";
+
+add_five($num);
+echo $num;
+
+$num = 2;
+
+echo "<br>";
+$num = gehitu_balioa($num);
+echo $num;
+
+```
+
 ### Ariketa: Forms and validation
 
 formulariotik bidaltzen den informazioa (GET eta POST) erabili aurretik balidatu. Formularioko elementu ezberdinak probatu (Text Fields, Radio Buttons, textarea, select, files, email, password, ...)
