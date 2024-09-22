@@ -1,12 +1,12 @@
 # WGZ
 Web Garapena Zerbitzarian
 
-## PHP
-### Intro
+# PHP
+## Intro
 
 Zer den PHP azalpena
 
-### Garapen ingurunea prestatu
+## Garapen ingurunea prestatu
 
 Ariketa: 
 
@@ -136,13 +136,24 @@ Garapen ingurunerako beste aukerak:
 - VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
 - VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
 - https://vscodium.com/#install
+
+## Database
+
+docker:
+
+## composer
+
+nola erabili docker-ekin?
+
+## HTTPS
+
   
-### PHP tutoriala
+## PHP tutoriala
 
 - [w3schools](https://www.w3schools.com/php/default.asp)
 - https://phptherightway.com/
 
-#### Ariketa: HTML-ko taula array-ak erabiliz
+### Ariketa: HTML-ko taula array-ak erabiliz
 
 HTML-ko taula batean inprimantu, matrize batean ([multidimensional array](https://www.w3schools.com/pHP/php_arrays_multidimensional.asp)) batean gordeak dauden datuak erabiliz.
 
@@ -378,7 +389,23 @@ fetch('ikasleak.php')
 http://localhost:8080/ikasleak.html
 
 
-#### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
+### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
 
 - Aukera 1: PHP-k irudia sortu eta bidali (PHPko liburutegia erabili behar da, horrek 'docker' konfigurazioa aldatzea eskatuko du)
 - Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
+
+### Ariketa: Forms and validation
+
+formulariotik bidaltzen den informazioa (GET eta POST) erabili aurretik balidatu. Formularioko elementu guztiak probatu (Text Fields, Radio Buttons, textarea, select, files, email, password, ...)
+
+### Ariketa: Login
+
+HTTPS, session eta cookie erabilita 'login' bat garatu
+
+### Ariketa: Database 'CRUD operations' egin 
+- https://www.w3schools.com/php/php_mysql_intro.asp
+- https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+- Docker
+
+### Ariketa nagusia: 'TOP FILMAK'
+
