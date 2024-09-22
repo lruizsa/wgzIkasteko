@@ -1,12 +1,12 @@
 # WGZ
 Web Garapena Zerbitzarian
 
-## PHP
-### Intro
+# PHP
+## Intro
 
 Zer den PHP azalpena
 
-### Garapen ingurunea prestatu
+## Garapen ingurunea prestatu
 
 Ariketa: 
 
@@ -136,13 +136,31 @@ Garapen ingurunerako beste aukerak:
 - VirtualBox erabiliz Ubuntu Desktop birtualizatu eta bertan dena instalatu.
 - VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
 - https://vscodium.com/#install
-  
-### PHP tutoriala
+
+## composer
+
+gomendatutako aurrebaldintza: PHP OOP eta namespace-ak jakitea
+
+nola erabili docker-ekin?
+- https://getcomposer.org/doc/00-intro.md#docker-image
+- https://hub.docker.com/_/composer
+- https://medium.com/@lukaspereyra8/docker-compose-php-composer-the-missing-vendors-folder-issue-66faa5475c59
+
+## HTTPS
+
+- nginx konfiguratu HTTPS erabiltzeko. docker
+- certbot
+
+## Database
+
+composer erabiliz
+
+## PHP tutoriala
 
 - [w3schools](https://www.w3schools.com/php/default.asp)
 - https://phptherightway.com/
 
-#### Ariketa: HTML-ko taula array-ak erabiliz
+### Ariketa: HTML-ko taula array-ak erabiliz
 
 HTML-ko taula batean inprimantu, matrize batean ([multidimensional array](https://www.w3schools.com/pHP/php_arrays_multidimensional.asp)) batean gordeak dauden datuak erabiliz.
 
@@ -378,7 +396,7 @@ fetch('ikasleak.php')
 http://localhost:8080/ikasleak.html
 
 
-#### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
+### Ariketa (aurreratua): 3Dko irudia sortu array batean gordeta dauden puntuekin
 
 - Aukera 1: PHP-k irudia sortu eta bidali (PHPko liburutegia erabili behar da, horrek 'docker' konfigurazioa aldatzea eskatuko du)
 - Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
@@ -420,3 +438,7 @@ $num = gehitu_balioa($num);
 echo $num;
 
 ```
+
+### Ariketa: Forms and validation
+
+formulariotik bidaltzen den informazioa (GET eta POST) erabili aurretik balidatu. Formularioko elementu ezberdinak probatu (Text Fields, Radio Buttons, textarea, select, files, email, password, ...)
