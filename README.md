@@ -558,12 +558,21 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 ### Ariketa: Login
 
-'PHP session' erabilita 'login' bat garatu. Hobekuntzak: pasahitza hash bezala jarri, HTTPS erabili (nginx)
+'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
 
 ### Ariketa: Database 'CRUD operations' egin 
+
 - https://www.w3schools.com/php/php_mysql_intro.asp
 - https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 - Docker
+
+### Ariketa: HTTPS konfiguratu
+
+nginx docker konfigurazioa
+
+### Ariketa: login 2
+
+Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman. Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez). HTTPS erabili (docker nginx)
 
 ### Ariketa nagusia: 'TOP FILMAK'
 
