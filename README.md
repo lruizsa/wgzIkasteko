@@ -441,4 +441,4 @@ echo $num;
 
 ### Ariketa: Forms and validation
 
-formulariotik bidaltzen den informazioa (GET eta POST) erabili aurretik balidatu. Formularioko elementu ezberdinak probatu (Text Fields, Radio Buttons, textarea, select, files, email, password, ...)
+formulariotik bidaltzen den informazioa (GET eta POST) erabili aurretik balidatu. Formularioko elementu ezberdinak probatu (Text Fields, Radio Buttons, textarea, select, email, password, ...)
