@@ -551,3 +551,11 @@ echo $gender;
 </body>
 </html>
 ```
+
+### Ariketa: berbideraketa (PHP redirection)
+
+PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
+
+### Ariketa: Login
+
+'PHP session' erabilita 'login' bat garatu. Hobekuntzak: pasahitza hash bezala jarri, HTTPS erabili (nginx)
