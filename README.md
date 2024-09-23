@@ -552,7 +552,9 @@ echo $gender;
 </html>
 ```
 
-### Ariketa: berbideraketa (PHP redirection). PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
+### Ariketa: berbideraketa (PHP redirection)
+
+PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 ### Ariketa: Login
 
