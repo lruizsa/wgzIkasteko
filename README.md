@@ -558,7 +558,7 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 ### Ariketa: Login
 
-HTTPS, session eta cookie erabilita 'login' bat garatu
+'PHP session' erabilita 'login' bat garatu. Hobekuntza, HTTPS erabili (nginx)
 
 ### Ariketa: Database 'CRUD operations' egin 
 - https://www.w3schools.com/php/php_mysql_intro.asp
