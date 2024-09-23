@@ -560,4 +560,3 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
 
-Hobekuntzak: HTTPS erabili (nginx)
