@@ -402,7 +402,7 @@ http://localhost:8080/ikasleak.html
 - Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
 
 
-#### funtzioak reference value
+### funtzioak reference value
 
 ```php
 <?php
@@ -436,6 +436,92 @@ $num = 2;
 echo "<br>";
 $num = gehitu_balioa($num);
 echo $num;
+
+```
+
+### Formularioa erabiliz fitxategiak igotzeko adibidea
+
+Formularioa erabiliz fitxategiak igotzeko adibidea
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Example</title>
+</head>
+<body>
+    <h2>Upload a File</h2>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <label for="file">Select a file to upload:</label>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload File" name="submit">
+    </form>
+</body>
+</html>
+```
+
+```php
+<?php
+// Directory where the uploaded file will be saved
+$target_dir = "uploads/";
+// Path to the file that will be uploaded
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+// Variable to store whether the upload is successful
+$uploadOk = 1;
+// Get the file extension of the uploaded file
+$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+// Check if the upload directory exists, if not, create it
+if (!file_exists($target_dir)) {
+    mkdir($target_dir, 0777, true);
+}
+
+// Check if the file is an actual image or fake image (for images)
+if (isset($_POST["submit"])) {
+    // Optional: you can check for specific types (e.g., images)
+    // $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    // if ($check !== false) {
+    //     echo "File is an image - " . $check["mime"] . ".";
+    //     $uploadOk = 1;
+    // } else {
+    //     echo "File is not an image.";
+    //     $uploadOk = 0;
+    // }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Check file size (limit to 5MB)
+    if ($_FILES["fileToUpload"]["size"] > 5000000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats (e.g., only certain file types)
+    $allowed_types = array("jpg", "png", "jpeg", "gif", "pdf", "docx");
+    if (!in_array($fileType, $allowed_types)) {
+        echo "Sorry, only JPG, JPEG, PNG, GIF, PDF & DOCX files are allowed.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    } else {
+        // If everything is ok, try to upload the file
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+?>
 
 ```
 
