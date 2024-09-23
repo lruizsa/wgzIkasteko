@@ -558,4 +558,6 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 ### Ariketa: Login
 
-'PHP session' erabilita 'login' bat garatu. Hobekuntzak: pasahitza hash bezala jarri, HTTPS erabili (nginx)
+'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
+
+Hobekuntzak: HTTPS erabili (nginx)
