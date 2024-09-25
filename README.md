@@ -570,7 +570,7 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 - Docker: Nginx, PHP, mariadb: https://blog.jonsdocs.org.uk/2023/04/08/using-docker-for-a-php-mariadb-and-nginx-project/
 
 docker-compose.yml
-´´´
+```
 services:
   # nginx
   web:
