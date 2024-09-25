@@ -20,4 +20,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #install laravel
 RUN composer global require laravel/installer
 ENV PATH="$PATH:/root/.config/composer/vendor/bin"
-ENV DB_HOST=mysql
+ENV DB_HOST=db
