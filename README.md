@@ -601,10 +601,23 @@ services:
   mariadb:
     container_name: db
     image: mariadb:10.9
+    ports:
+      - '8306:3306'    
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
     volumes:
       - './mysqldata:/var/lib/mysql'
+
+  # Adminer
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    restart: always
+    ports:
+      - 7777:8080  
 
 # Volumes
 volumes:
@@ -620,6 +633,18 @@ mariadb container-era sartzeko:
 ```
 docker exec -it db bash
 root@6691667cf708:/# mysql -u root -p
+```
+edo:
+```
+sudo apt update
+sudo apt install mysql-client
+
+# mysql 8306 portuan entzuten dago
+mysql -u root -h 127.0.0.1 -P 8306 -p
+```
+edo Adminer erabiliz:
+```
+http://localhost:7777
 ```
 
 db.php:
