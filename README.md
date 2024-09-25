@@ -75,8 +75,6 @@ PHP
 
 docker-compose.yml:
 ```
-version: '3.9'
-
 services:
   web:
     image: nginx:latest
@@ -85,9 +83,8 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./default.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - php-fpm
-  php-fpm:
+
+  php:
     image: php:8-fpm
     volumes:
       - ./src:/var/www/html
@@ -96,15 +93,21 @@ services:
 default.conf:
 ```
 server {
+    listen 80;
+    listen [::]:80;    
+    
     index index.php index.html;
-    server_name phpfpm.local;
+    server_name localhost;
+    
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
+    
     root /var/www/html;
+    
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass php-fpm:9000;
+        fastcgi_pass php:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -402,7 +405,7 @@ http://localhost:8080/ikasleak.html
 - Aukera 2: PHP-k puntuak JSON moduan bidali eta JS liburutegi bat erabiz irudia erakutsi
 
 
-#### funtzioak reference value
+### funtzioak reference value
 
 ```php
 <?php
@@ -559,4 +562,114 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 ### Ariketa: Login
 
 'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
+
+### Ariketa: Database 'CRUD operations' egin 
+
+- https://www.w3schools.com/php/php_mysql_intro.asp
+- https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+- Docker: Nginx, PHP, mariadb: https://blog.jonsdocs.org.uk/2023/04/08/using-docker-for-a-php-mariadb-and-nginx-project/
+
+docker-compose.yml
+´´´
+services:
+  # nginx
+  web:
+    container_name: web
+    image: nginx:latest
+    ports:
+      - '8080:80'
+    links:
+      - 'php'      
+    volumes:
+      - ./src:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  # PHP
+  php:
+    container_name: php
+    build:
+      dockerfile: Dockerfile-php
+      context: .
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mariadb
+
+  # MariaDB Service
+  mariadb:
+    container_name: db
+    image: mariadb:10.9
+    ports:
+      - '8306:3306'    
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - './mysqldata:/var/lib/mysql'
+
+  # Adminer
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    restart: always
+    ports:
+      - 7777:8080  
+
+# Volumes
+volumes:
+  mysqldata:
+´´´
+
+container-ak ikusteko:
+```
+docker ps
+```
+
+mariadb container-era sartzeko:
+```
+docker exec -it db bash
+root@6691667cf708:/# mysql -u root -p
+```
+edo:
+```
+sudo apt update
+sudo apt install mysql-client
+
+# mysql 8306 portuan entzuten dago
+mysql -u root -h 127.0.0.1 -P 8306 -p
+```
+edo Adminer erabiliz:
+```
+http://localhost:7777
+```
+
+db.php:
+```php
+<?php
+$servername = "db";  // docker-compose.yml begiratu
+$username = "root";
+$password = "root";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+```
+
+### Ariketa: HTTPS konfiguratu
+
+nginx docker konfigurazioa
+
+### Ariketa: login 2
+
+Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman. Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez). HTTPS erabili (docker nginx)
+
 
