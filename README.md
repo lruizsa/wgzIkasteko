@@ -699,4 +699,11 @@ Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman. Honek 
 
 [Top filmak ariketa](topmovies.md)
 
+### composer
+
+```
+docker exec -it php bash
+composer init
+```
+
 
