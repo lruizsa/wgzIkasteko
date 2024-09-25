@@ -672,6 +672,4 @@ nginx docker konfigurazioa
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman. Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez). HTTPS erabili (docker nginx)
 
-### Ariketa nagusia: 'TOP FILMAK'
 
-[Top filmak ariketa](topmovies.md)
