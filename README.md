@@ -74,7 +74,7 @@ PHP
 - https://medium.com/@tech_18484/deploying-a-php-web-app-with-docker-compose-nginx-and-mariadb-d61a84239c0d
 
 docker-compose.yml:
-```
+```yml
 services:
   web:
     image: nginx:latest
@@ -570,7 +570,7 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 - Docker: Nginx, PHP, mariadb: https://blog.jonsdocs.org.uk/2023/04/08/using-docker-for-a-php-mariadb-and-nginx-project/
 
 docker-compose.yml
-```
+```yml
 services:
   # nginx
   web:
@@ -622,7 +622,7 @@ services:
 # Volumes
 volumes:
   mysqldata:
-´´´
+```
 
 container-ak ikusteko:
 ```
@@ -634,6 +634,7 @@ mariadb container-era sartzeko:
 docker exec -it db bash
 root@6691667cf708:/# mysql -u root -p
 ```
+
 edo:
 ```
 sudo apt update
