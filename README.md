@@ -132,6 +132,11 @@ docker volume baimenak aldatu:
 sudo chown ubuntu:ubuntu -R src
 ```
 
+build berriro egiteko Dockerfile aldaten bada:
+```
+docker-compose build
+```
+
 Garapen ingurunerako beste aukerak:
 - XAMPP: https://www.apachefriends.org/, MAMP, ...
 - visual code studio web: https://code.visualstudio.com/docs/editor/vscode-web
