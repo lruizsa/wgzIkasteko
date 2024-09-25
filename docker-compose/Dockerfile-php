@@ -16,3 +16,8 @@ RUN apt-get purge -y libmagickwand-dev
 
 # Install Composer so it's available
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+#install laravel
+RUN composer global require laravel/installer
+ENV PATH="$PATH:/root/.config/composer/vendor/bin"
+ENV DB_HOST=mysql
