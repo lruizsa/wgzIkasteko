@@ -116,6 +116,15 @@ server {
 }
 ```
 
+```
+docker-compose up
+```
+
+'src' volume baimenak aldatu: 
+```
+sudo chown ubuntu:ubuntu -R src 
+```
+
 
 ```
 docker-compose up
@@ -127,10 +136,6 @@ docker logs php-web-1 -f
 docker exec -it php-web-1 bash
 ```
 
-docker volume baimenak aldatu: 
-```
-sudo chown ubuntu:ubuntu -R src
-```
 
 build berriro egiteko Dockerfile aldaten bada:
 ```

@@ -21,6 +21,8 @@ docker-compose.yml
 ```
 
 ```
+docker exec -it php bash
+
 composer create-project laravel/laravel example-app
 cd example-app/
 php artisan serve --host=0.0.0.0 --port=8000
@@ -34,12 +36,12 @@ php artisan serve --host=0.0.0.0 --port=8000
 
 Errore ematen badu, ```example-app/.env``` fitxategia aldatu eta 
 ```
-DB_DATABASE=example_app
+DB_CONNECTION=mariadb
+DB_HOST=db
+...
 DB_USERNAME=root
 DB_PASSWORD=root
-# edo beste batzuk
 ```
-aldagai haue ```Dockerfile-php``` barruan jarri daitezke ```ENV DB_PASSWORD=root``` moduan
 
 ondoren:
 ```
