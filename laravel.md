@@ -4,21 +4,9 @@
 
 https://laravel.com/docs/11.x/installation
 
+[docker-compose.yml](docker-compose/docker-compose.yml)
 
-docker-compose.yml
-```
-...
-  # PHP
-  php:
-    container_name: php
-    build:
-      dockerfile: Dockerfile-php
-      context: .
-    ports:
-      # laravel
-      - '8000:8000'
-...
-```
+[Dockerfile-php](docker-compose/Dockerfile-php)
 
 ```
 docker exec -it php bash
@@ -52,6 +40,19 @@ php artisan migrate
 php artisan serve --host=0.0.0.0 --port=8000
 ```
 http://localhost:8000
+
+
+## laravel breeze
+
+https://laravel.com/docs/11.x/starter-kits#laravel-breeze
+
+```
+laravel new laravel-app-breeze
+```
+
+http://localhost:8000/login
+
+http://localhost:8000/register
 
 
 
