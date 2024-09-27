@@ -25,7 +25,7 @@ RUN apt-get purge -y libmagickwand-dev
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # npm
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
 RUN ["sh",  "./nodesource_setup.sh"]
 
 RUN apt-get install -y nodejs
