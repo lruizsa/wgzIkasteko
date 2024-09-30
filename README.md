@@ -620,6 +620,9 @@ services:
       #MYSQL_DATABASE: mydatabase
     volumes:
       - './mysqldata:/var/lib/mysql'
+    # $ id -u
+    # $ id -g
+    user: "1000:1000"
 
   # Adminer
   adminer:
@@ -634,6 +637,11 @@ services:
 # Volumes
 volumes:
   mysqldata:
+```
+
+OHARRA: mariadb-k 'mysqldata' direktorioa sortzen du 'roo' bezala ez bada existitzen. Beraz, docker-compose up egin baino lehenago guk sortuko dugu direktorio hori:
+```
+mkdir mysqldata
 ```
 
 Dockerfile-php:
