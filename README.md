@@ -573,7 +573,7 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
 
-### Ariketa: Database 'CRUD operations' egin 
+### PHP Database
 
 - https://www.w3schools.com/php/php_mysql_intro.asp
 - https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
@@ -697,10 +697,58 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 ```
 
+<<<<<<< HEAD
+=======
+### Ariketa: Database 'CRUD operations' egin 
+
+Create, Read, Update, Delete
+
+Create Database:
+```php
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Create database
+$sql = "CREATE DATABASE myDB";
+if ($conn->query($sql) === TRUE) {
+  echo "Database created successfully";
+} else {
+  echo "Error creating database: " . $conn->error;
+}
+
+$conn->close();
+?>
+```
+
+>>>>>>> dev
 ### Ariketa: login 2
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
 
 
+<<<<<<< HEAD
+=======
+### Ariketa nagusia: 'TOP FILMAK'
 
+[Top filmak ariketa](topmovies.md)
 
+### composer
+
+```
+docker exec -it php bash
+composer init
+```
+>>>>>>> dev
+
+### HTTPS (?)
+
+nginx cetbot(?). Login ariketan HTTPS jarri 
