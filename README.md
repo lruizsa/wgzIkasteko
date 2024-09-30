@@ -699,8 +699,6 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 ```
 
-<<<<<<< HEAD
-=======
 ### Ariketa: Database 'CRUD operations' egin 
 
 Create, Read, Update, Delete
@@ -731,26 +729,6 @@ $conn->close();
 ?>
 ```
 
->>>>>>> dev
 ### Ariketa: login 2
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
-
-
-<<<<<<< HEAD
-=======
-### Ariketa nagusia: 'TOP FILMAK'
-
-[Top filmak ariketa](topmovies.md)
-
-### composer
-
-```
-docker exec -it php bash
-composer init
-```
->>>>>>> dev
-
-### HTTPS (?)
-
-nginx cetbot(?). Login ariketan HTTPS jarri 
