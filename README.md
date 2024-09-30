@@ -680,7 +680,7 @@ edo Adminer erabiliz:
 http://localhost:7777
 ```
 
-db.php:
+db.php: (https://www.w3schools.com/php/php_mysql_connect.asp)
 ```php
 <?php
 $servername = "db";  // docker-compose.yml begiratu
@@ -697,13 +697,10 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 ```
 
-### Ariketa: HTTPS konfiguratu
-
-nginx docker konfigurazioa
-
 ### Ariketa: login 2
 
-Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez). HTTPS erabili (docker nginx)
+Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
+
 
 ### Ariketa nagusia: 'TOP FILMAK'
 
@@ -716,4 +713,6 @@ docker exec -it php bash
 composer init
 ```
 
+### HTTPS (?)
 
+nginx cetbot(?). Login ariketan HTTPS jarri 
