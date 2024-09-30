@@ -4,9 +4,9 @@
 
 https://laravel.com/docs/11.x/installation
 
-[docker-compose.yml](docker-compose/docker-compose.yml)
+[docker-compose.yml](docker-compose.yml)
 
-[Dockerfile-php](docker-compose/Dockerfile-php)
+[Dockerfile](Dockerfile)
 
 ```
 docker exec -it php bash
@@ -48,6 +48,7 @@ https://laravel.com/docs/11.x/starter-kits#laravel-breeze
 
 ```
 laravel new laravel-app-breeze
+...
 ```
 
 http://localhost:8000/login
