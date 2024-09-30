@@ -68,6 +68,8 @@ git pull
 git push
 ```
 
+.gitignore (fitxategi honetan jarri git-etik kanpo dauden direktorio eta fitxategiak)
+
 
 PHP
 - https://marc.it/dockerize-application-with-nginx-and-php8/
@@ -615,7 +617,7 @@ services:
       - '8306:3306'    
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydatabase
+      #MYSQL_DATABASE: mydatabase
     volumes:
       - './mysqldata:/var/lib/mysql'
 
