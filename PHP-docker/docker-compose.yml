@@ -17,15 +17,8 @@ services:
   php:
     container_name: php
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-php
       context: .
-#    user: 1000:1000
-      args:
-        user: ubuntu
-        uid: 1000
-    ports:
-      # laravel
-      - '8000:8000'
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -39,7 +32,7 @@ services:
       - '8306:3306'    
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydatabase
+      #MYSQL_DATABASE: mydatabase
     volumes:
       - './mysqldata:/var/lib/mysql'
 
