@@ -706,9 +706,9 @@ Create, Read, Update, Delete
 Create Database:
 ```php
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
+$servername = "db";  // docker-compose.yml begiratu
+$username = "root";
+$password = "root";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
