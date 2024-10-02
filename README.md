@@ -841,7 +841,7 @@ Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregi
 
 ## database backup
 
-test datubasearen backup-a .sql fitxategi batera:
+'test' datubasearen backup-a .sql fitxategi batera:
 ```
 mysqldump -u root -h 127.0.0.1 -P 8306 -p test > test.sql
 ``` 
