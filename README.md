@@ -839,6 +839,13 @@ Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregi
 [Top filmak ariketa](topmovies.md)
 
 
+## database backup
+
+test datubasearen backup-a .sql fitxategi batera:
+```
+mysqldump -u root -h 127.0.0.1 -P 8306 -p test > test.sql
+``` 
+
 ## Erroreak logs
 
 [TODO]
