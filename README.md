@@ -620,6 +620,9 @@ services:
       #MYSQL_DATABASE: mydatabase
     volumes:
       - './mysqldata:/var/lib/mysql'
+    # $ id -u
+    # $ id -g
+    user: "1000:1000"
 
   # Adminer
   adminer:
@@ -634,6 +637,11 @@ services:
 # Volumes
 volumes:
   mysqldata:
+```
+
+OHARRA: mariadb-k 'mysqldata' direktorioa sortzen du 'roo' bezala ez bada existitzen. Beraz, docker-compose up egin baino lehenago guk sortuko dugu direktorio hori. Gero git-ean sartu dezakegu (nahiz eta agian egokiena datuak exportatzea da .sql fitxategi batetara eta hori git-en jartzea. modu automatikoan egitea komeni):
+```
+mkdir mysqldata
 ```
 
 Dockerfile-php:
@@ -727,6 +735,23 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 ?>
+```
+
+### Ariketa: fitxategiak igo
+
+https://www.w3schools.com/php/php_file_upload.asp
+
+php.ini:
+```
+file_uploads = On
+```
+
+non dago php.ini?
+
+```
+docker exec -it php bash
+
+cat $PHP_INI_DIR/php.ini
 ```
 
 ### Ariketa: login 2
