@@ -737,6 +737,23 @@ $conn->close();
 ?>
 ```
 
+### Ariketa: fitxategiak igo
+
+https://www.w3schools.com/php/php_file_upload.asp
+
+php.ini:
+```
+file_uploads = On
+```
+
+non dago php.ini?
+
+```
+docker exec -it php bash
+
+cat $PHP_INI_DIR/php.ini
+```
+
 ### Ariketa: login 2
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
@@ -746,13 +763,28 @@ Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregi
 
 [Top filmak ariketa](topmovies.md)
 
-### composer
+
+## Erroreak logs
+
+[TODO]
+
+https://phptherightway.com/#errors_and_exceptions
+
+```
+docker-compose logs -f
+```
+
+## composer
+
+[TODO]
 
 ```
 docker exec -it php bash
 composer init
 ```
 
-### HTTPS (?)
+## HTTPS (?)
+
+[TODO]
 
 nginx cetbot(?). Login ariketan HTTPS jarri 
