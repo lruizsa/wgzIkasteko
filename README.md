@@ -838,6 +838,111 @@ if ($uploadOk == 0) {
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
 
+### PHP OOP
+
+https://www.w3schools.com/php/php_oop_what_is.asp
+
+
+PHP OOP - Classes and Objects, Constructor, Inheritance, Class Constants, Abstract Classes, Interfaces, Traits, Static Methods, Static Properties
+
+
+Protected adibidea:
+```php
+<?php
+
+class Animal {
+    protected $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    protected function makeSound() {
+        return "Some sound";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        return $this->makeSound() . " Woof!";
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+$dog = new Dog("Rex");
+echo $dog->bark(); // "Some sound Woof!"
+// echo $dog->makeSound(); // Honek errore bat emango du, makeSound protected delako
+echo $dog->getName(); // "Rex"
+
+```
+Abstract Class protected metodoa:
+```php
+<?php
+abstract class ParentClass {
+  // Abstract method with an argument
+  abstract protected function prefixName($name);
+}
+
+class ChildClass extends ParentClass {
+  public function prefixName($name) {
+    if ($name == "John Doe") {
+      $prefix = "Mr.";
+    } elseif ($name == "Jane Doe") {
+      $prefix = "Mrs.";
+    } else {
+      $prefix = "";
+    }
+    return "{$prefix} {$name}";
+  }
+}
+
+$class = new ChildClass;
+echo $class->prefixName("John Doe");
+echo "<br>";
+echo $class->prefixName("Jane Doe");
+
+
+
+/*
+chatGPT-ri galdera: "prefixName metodoa protected modifikatzailearekin definituta dago, eta horrek zenbait helburu ditu:"
+
+Erantzuna:
+
+
+`prefixName` metodoa `protected` modifikatzailearekin definituta dago, eta horrek zenbait helburu ditu:
+
+### 1. **Irismena Murriztea**
+
+- **Kanpotik Eskuratzeko Debekua**: `protected` modifikatzailearekin, `prefixName` metodoa ez da kanpotik (instantsia sortuz) deitzeko eskuragarri. Honek esan nahi du metodoa ezin dela zuzenean deitu `ChildClass`-en instantsia bat erabiliz kanpoan, adibidez, `$class->prefixName("John Doe");` baldin bada.
+
+### 2. **Heredapenari Egokitzen Diona**
+
+- **Heredatutako Klaseetan Erabilera**: `protected` modifikatzailea erabiltzeak ahalbidetzen du `prefixName` metodoa `ChildClass`-en barruan eta, etorkizunean, `ChildClass`-etik heredatzen duten klaseetan eskuragarri egotea. Horrela, metodoak bere funtzionalitatearen parte izaten jarraitzen du, baina ez da publikoki eskuragarri.
+
+### 3. **Inplementazio Kontrolatua**
+
+- **Kontrolatutako Sarbidea**: `protected` erabiltzeak `prefixName` metodoa kontrolpean mantentzen du, eta garatzaileek metodoa nola erabiltzen den zehazten laguntzen die. Klasearen barruan edo bere heredatutako klaseetan erabiltzeko aukera ematen du, baina kanpotik eskuratzeko aukera murrizten du.
+
+### Laburpena
+
+`protected` modifikatzaileak `prefixName` metodoaren irismen murriztua eskaintzen du, klasearen eta bere semeen artean erabilerari aukera emanez, baina kanpotik ikustea edo erabiltzea debekatuz. Horrela, objektu orientatutako programazioaren irizpideak hobetzen ditu, eta klaseen arteko interakzioa modu seguruagoan kontrolatzeko aukera ematen du.
+*/
+
+?>
+
+```
+
+### Ariketa: Login 3
+
+Aurreko login ariketa OOP erabiliz berregin.
+
+### PHP Namespaces
+
+
+
 ### Ariketa nagusia: 'TOP FILMAK'
 
 [Top filmak ariketa](topmovies.md)
