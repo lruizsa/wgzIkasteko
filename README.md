@@ -8,21 +8,36 @@ Zer den PHP azalpena
 
 ## Garapen ingurunea prestatu
 
-Ariketa: 
-
-PHP-n "Hello World" egin Docker eta Visual Code erabiliz
+### Docker
 
 Docker:
 - Docker desktop
 - Portainer CE: https://docs.portainer.io/start/install-ce
 - https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
-  
-Docker desktop instalatu: 
+
+Docker desktop instalatu (Windows): 
 - Run Docker in Windows - Setup, Docker Compose, Extensions: https://www.youtube.com/watch?v=cMyoSkQZ41E
 - docker run -d -p 8080:80 docker/getting-started
 - http://localhost:8080  gida jarraitu
 
 Oharra: Ikasleen baimenak direla eta ezin izan da Docker Desktop instalatu. Konpontzeko, erabiltzailea "docker" talde lokalean sartu.
+
+Docker Linux: (https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
+```
+sudo apt update
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh
+
+sudo sh -eux <<EOF
+# Install newuidmap & newgidmap binaries
+apt-get install -y uidmap
+EOF
+
+dockerd-rootless-setuptool.sh install
+docker run hello-world
+```
+
+### Visual Code | Codium
 
 codium (visual code open source) addons-ak instalatu daitezke:
 - https://vscodium.com/#install
@@ -31,8 +46,12 @@ Visual Code:
 - addons: 'WSL', 'docker', PHP Tools for VS Code, ...
 - https://dev.to/arafatweb/top-10-vs-code-extensions-for-php-developers-in-2024-2m08
 - "Install from VSIX" "marketplace-n" sartzeko baimenik ez bait dugu, extensions-ak eskuz instalatuko dira. https://www.vsixhub.com/
-  
-git
+
+### GIT
+
+
+git Windows: 
+
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
 
 git Windows: C:\Users\<user>\.gitconfig
@@ -71,7 +90,7 @@ git push
 .gitignore (fitxategi honetan jarri git-etik kanpo dauden direktorio eta fitxategiak)
 
 
-PHP
+### PHP docker erabiliz
 - https://marc.it/dockerize-application-with-nginx-and-php8/
 - https://medium.com/@tech_18484/deploying-a-php-web-app-with-docker-compose-nginx-and-mariadb-d61a84239c0d
 
@@ -152,23 +171,6 @@ Garapen ingurunerako beste aukerak:
 - VirtualBox-en UbuntuServer instalatu eta Visual Studio Code Windows.en. Zerbitzarira konektatzeko VSko remote addon erabili
 - https://vscodium.com/#install
 
-## composer
-
-gomendatutako aurrebaldintza: PHP OOP eta namespace-ak jakitea
-
-nola erabili docker-ekin?
-- https://getcomposer.org/doc/00-intro.md#docker-image
-- https://hub.docker.com/_/composer
-- https://medium.com/@lukaspereyra8/docker-compose-php-composer-the-missing-vendors-folder-issue-66faa5475c59
-
-## HTTPS
-
-- nginx konfiguratu HTTPS erabiltzeko. docker
-- certbot
-
-## Database
-
-composer erabiliz
 
 ## PHP tutoriala
 
@@ -581,6 +583,8 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 - https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 - Docker: Nginx, PHP, mariadb: https://blog.jonsdocs.org.uk/2023/04/08/using-docker-for-a-php-mariadb-and-nginx-project/
 
+konfigurazio fitxategiak [PHP-docker](PHP-docker)
+
 docker-compose.yml
 ```yml
 services:
@@ -639,7 +643,7 @@ volumes:
   mysqldata:
 ```
 
-OHARRA: mariadb-k 'mysqldata' direktorioa sortzen du 'roo' bezala ez bada existitzen. Beraz, docker-compose up egin baino lehenago guk sortuko dugu direktorio hori. Gero git-ean sartu dezakegu (nahiz eta agian egokiena datuak exportatzea da .sql fitxategi batetara eta hori git-en jartzea. modu automatikoan egitea komeni):
+OHARRA: mariadb-k 'mysqldata' direktorioa sortzen du 'root' bezala ez bada existitzen. Beraz, docker-compose up egin baino lehenago guk sortuko dugu direktorio hori. Gero git-ean sartu dezakegu (nahiz eta agian egokiena datuak exportatzea da .sql fitxategi batetara eta hori git-en jartzea. modu automatikoan egitea komeni):
 ```
 mkdir mysqldata
 ```
@@ -833,3 +837,145 @@ if ($uploadOk == 0) {
 ### Ariketa: login 2
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
+
+### PHP OOP
+
+https://www.w3schools.com/php/php_oop_what_is.asp
+
+
+PHP OOP - Classes and Objects, Constructor, Inheritance, Class Constants, Abstract Classes, Interfaces, Traits, Static Methods, Static Properties
+
+
+Protected adibidea:
+```php
+<?php
+
+class Animal {
+    protected $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    protected function makeSound() {
+        return "Some sound";
+    }
+}
+
+class Dog extends Animal {
+    public function bark() {
+        return $this->makeSound() . " Woof!";
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+$dog = new Dog("Rex");
+echo $dog->bark(); // "Some sound Woof!"
+// echo $dog->makeSound(); // Honek errore bat emango du, makeSound protected delako
+echo $dog->getName(); // "Rex"
+
+```
+Abstract Class protected metodoa:
+```php
+<?php
+abstract class ParentClass {
+  // Abstract method with an argument
+  abstract protected function prefixName($name);
+}
+
+class ChildClass extends ParentClass {
+  public function prefixName($name) {
+    if ($name == "John Doe") {
+      $prefix = "Mr.";
+    } elseif ($name == "Jane Doe") {
+      $prefix = "Mrs.";
+    } else {
+      $prefix = "";
+    }
+    return "{$prefix} {$name}";
+  }
+}
+
+$class = new ChildClass;
+echo $class->prefixName("John Doe");
+echo "<br>";
+echo $class->prefixName("Jane Doe");
+
+
+
+/*
+chatGPT-ri galdera: "prefixName metodoa protected modifikatzailearekin definituta dago, eta horrek zenbait helburu ditu:"
+
+Erantzuna:
+
+
+`prefixName` metodoa `protected` modifikatzailearekin definituta dago, eta horrek zenbait helburu ditu:
+
+### 1. **Irismena Murriztea**
+
+- **Kanpotik Eskuratzeko Debekua**: `protected` modifikatzailearekin, `prefixName` metodoa ez da kanpotik (instantsia sortuz) deitzeko eskuragarri. Honek esan nahi du metodoa ezin dela zuzenean deitu `ChildClass`-en instantsia bat erabiliz kanpoan, adibidez, `$class->prefixName("John Doe");` baldin bada.
+
+### 2. **Heredapenari Egokitzen Diona**
+
+- **Heredatutako Klaseetan Erabilera**: `protected` modifikatzailea erabiltzeak ahalbidetzen du `prefixName` metodoa `ChildClass`-en barruan eta, etorkizunean, `ChildClass`-etik heredatzen duten klaseetan eskuragarri egotea. Horrela, metodoak bere funtzionalitatearen parte izaten jarraitzen du, baina ez da publikoki eskuragarri.
+
+### 3. **Inplementazio Kontrolatua**
+
+- **Kontrolatutako Sarbidea**: `protected` erabiltzeak `prefixName` metodoa kontrolpean mantentzen du, eta garatzaileek metodoa nola erabiltzen den zehazten laguntzen die. Klasearen barruan edo bere heredatutako klaseetan erabiltzeko aukera ematen du, baina kanpotik eskuratzeko aukera murrizten du.
+
+### Laburpena
+
+`protected` modifikatzaileak `prefixName` metodoaren irismen murriztua eskaintzen du, klasearen eta bere semeen artean erabilerari aukera emanez, baina kanpotik ikustea edo erabiltzea debekatuz. Horrela, objektu orientatutako programazioaren irizpideak hobetzen ditu, eta klaseen arteko interakzioa modu seguruagoan kontrolatzeko aukera ematen du.
+*/
+
+?>
+
+```
+
+### Ariketa: Login 3
+
+Aurreko login ariketa OOP erabiliz berregin.
+
+### PHP Namespaces
+
+
+
+### Ariketa nagusia: 'TOP FILMAK'
+
+[Top filmak ariketa](topmovies.md)
+
+
+## database backup
+
+'test' datubasearen backup-a .sql fitxategi batera:
+```
+mysqldump -u root -h 127.0.0.1 -P 8306 -p test > test.sql
+``` 
+
+## Erroreak logs
+
+[TODO]
+
+https://phptherightway.com/#errors_and_exceptions
+
+```
+docker-compose logs -f
+```
+
+## composer
+
+[TODO]
+
+```
+docker exec -it php bash
+composer init
+```
+
+## HTTPS (?)
+
+[TODO]
+
+nginx cetbot(?). Login ariketan HTTPS jarri 
