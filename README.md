@@ -37,6 +37,14 @@ dockerd-rootless-setuptool.sh install
 docker run hello-world
 ```
 
+'src' direktorioa sortu 'docker-compose up' egin baino lehenago
+```
+# docker-compose.yml dagoen lekuan jarri (edo beste leku batean nahi bada docker-compose.yml aldatu)
+mkdir src
+```
+
+dena martxan jartzeko 'docker-compose up' egin
+
 ### Visual Code | Codium
 
 codium (visual code open source) addons-ak instalatu daitezke:
@@ -718,9 +726,9 @@ Create, Read, Update, Delete
 Create Database:
 ```php
 <?php
-$servername = "db";  // docker-compose.yml begiratu
-$username = "root";
-$password = "root";
+$servername = "localhost";
+$username = "username";
+$password = "password";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
@@ -938,3 +946,16 @@ Erantzuna:
 ### Ariketa: Login 3
 
 Aurreko login ariketa OOP erabiliz berregin.
+
+### PHP Namespaces
+
+- https://www.w3schools.com/php/php_namespaces.asp
+- https://www.php.net/manual/en/language.namespaces.basics.php
+- https://symfonycasts.com/screencast/php-namespaces/namespaces
+- https://laracasts.com/series/php-for-beginners-2023-edition/episodes/31
+
+
+# Ariketa nagusia: 'TOP FILMAK'
+
+[Top filmak ariketa](topmovies.md)
+
