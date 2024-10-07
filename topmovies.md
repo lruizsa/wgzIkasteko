@@ -37,5 +37,6 @@ Datuak datubase batean gordeko dira.
 
 ## Inspirazioa
 
+- https://primeran.eus/
 - https://www.rottentomatoes.com/
 - https://www.imdb.com/
