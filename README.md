@@ -585,6 +585,100 @@ PHP batetara eskaera egin ondoren, erantzuna beste helbide batetara berbideratu.
 
 'PHP session' erabilita 'login' bat garatu. Babestutako orrialdeak atzitzeko erabiltzailea logeatua egon behar du. 'logout' egiteko aukera egongo da. Pasahitza hash bezala gordeko da.
 
+### Ariketa: fitxategiak igo
+
+https://www.w3schools.com/php/php_file_upload.asp
+
+php.ini:
+```
+file_uploads = On
+```
+
+non dago php.ini? begiratu [text](PHP-docker/Dockerfile-php)
+
+```
+docker exec -it php bash
+
+cat $PHP_INI_DIR/php.ini
+```
+
+'uploads' direktorioa sortu eta 'www-data' erabiltzailera aldatu
+```
+cd src
+mkdir uploads
+sudo chown -R www-data:www-data uploads
+```
+
+upload.html
+```html
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
+</body>
+</html>
+```
+
+upload.php
+```php
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
+}
+?>
+```
+
+
 ### PHP Database
 
 - https://www.w3schools.com/php/php_mysql_intro.asp
@@ -723,7 +817,7 @@ echo "Connected successfully";
 
 Create, Read, Update, Delete
 
-Create Database:
+#### Create Database:
 
 ```sql
 CREATE DATABASE myDB;
@@ -754,7 +848,7 @@ $conn->close();
 ?>
 ```
 
-Create table:
+#### Create table:
 
 ```sql
 USE myDB;
@@ -801,7 +895,7 @@ $conn->close();
 ?>
 ```
 
-Insert:
+#### Insert db:
 
 ```php
 <?php
@@ -830,99 +924,53 @@ $conn->close();
 ?>
 ```
 
-### Ariketa: fitxategiak igo
+#### Select PDO prepared
 
-https://www.w3schools.com/php/php_file_upload.asp
+ChatGPT-ri galdetuz: "Adibide bat PHP, select bat egiten duena PDO eta Prepared erabiliz"
 
-php.ini:
-```
-file_uploads = On
-```
-
-non dago php.ini? begiratu [text](PHP-docker/Dockerfile-php)
-
-```
-docker exec -it php bash
-
-cat $PHP_INI_DIR/php.ini
-```
-
-'uploads' direktorioa sortu eta 'www-data' erabiltzailera aldatu
-```
-cd src
-mkdir uploads
-sudo chown -R www-data:www-data uploads
-```
-
-upload.html
-```html
-<!DOCTYPE html>
-<html>
-<body>
-
-<form action="upload.php" method="post" enctype="multipart/form-data">
-  Select image to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Upload Image" name="submit">
-</form>
-
-</body>
-</html>
-```
-
-upload.php
 ```php
 <?php
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// DB konektatzeko konfigurazioa
+$host = 'db';
+$db = 'myDB';
+$user = 'root';
+$pass = 'root';
 
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
+try {
+    // PDO objektua sortu
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Prepared statement-a prestatu
+    $stmt = $pdo->prepare("SELECT * FROM MyGuests WHERE id = :id");
+
+    // Parametroa lotu
+    $id = 1; // Adibide gisa, 1. erabiltzailearen datuak lortu nahi ditugu
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+    // Exekutatu
+    $stmt->execute();
+
+    // Emaitzak lortu
+    $emaitzak = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Emaitzak inprimatu
+    foreach ($emaitzak as $erabiltzaile) {
+        echo "ID: " . $erabiltzaile['id'] . "<br>";
+        echo "Izena: " . $erabiltzaile['firstname'] . "<br>";
+        echo "Emaila: " . $erabiltzaile['email'] . "<br><br>";
+    }
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 
-// Check if file already exists
-if (file_exists($target_file)) {
-  echo "Sorry, file already exists.";
-  $uploadOk = 0;
-}
-
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-  echo "Sorry, your file is too large.";
-  $uploadOk = 0;
-}
-
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-  $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-  echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-  } else {
-    echo "Sorry, there was an error uploading your file.";
-  }
-}
+// Konektibitatea itxi
+$pdo = null;
 ?>
 ```
 
+*OHARRA: DB-ko kredentzialak .php guztietan jarri beharrean 'db.php' fitxategian jar daitezke eta gero ```require "db.php";``` erabili.
 ### Ariketa: login 2
 
 Aurreko login ariketari erabiltzaile berriak erregistratzeko aukera eman (erregistroan erabiltzailearen argazkia ere jarri). Honek informazioa modu iraunkorrean gordetzea eskatzen du (datu-base batean adibidez).
