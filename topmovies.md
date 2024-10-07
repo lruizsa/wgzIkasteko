@@ -29,6 +29,7 @@ Datuak datubase batean gordeko dira.
 ## Hobekuntzak
 
 - Filmaren karatula (irudi bat) gehitzeko aukera
+- Aplikazioa OOP-ra egokitu
 - Aplikazioaren interfazea hobetzea.
 - bilaketa aurreratua
 - Ikusle guztien arteko TOP 10 filmak
