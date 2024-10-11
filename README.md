@@ -1104,7 +1104,7 @@ composer require guzzlehttp/guzzle
 ```
 
 guzzle.php
-```
+```php
 <?php
 
 require 'vendor/autoload.php';
