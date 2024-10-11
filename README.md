@@ -1083,8 +1083,51 @@ Aurreko login ariketa OOP erabiliz berregin.
 - https://symfonycasts.com/screencast/php-namespaces/namespaces
 - https://laracasts.com/series/php-for-beginners-2023-edition/episodes/31
 
+### PHP composer
+
+- https://getcomposer.org/
+
+```
+docker exec -it php bash
+
+composer ...
+```
+
+.php fitxategian:
+```
+require 'vendor/autoload.php';
+```
+
+Adibidez:
+```
+composer require guzzlehttp/guzzle
+```
+
+guzzle.php
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use GuzzleHttp\Client;
+
+// Guzzle klientea sortu
+$client = new Client();
+
+// HTTP eskaera bat bidali
+$response = $client->request('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+
+// Erantzuna lortu
+$body = $response->getBody();
+
+// Erantzunaren edukiak erakutsi
+echo $body;
+
+```
 
 # Ariketa nagusia: 'TOP FILMAK'
 
 [Top filmak ariketa](topmovies.md)
+
+
 
