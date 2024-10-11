@@ -1122,7 +1122,22 @@ $body = $response->getBody();
 
 // Erantzunaren edukiak erakutsi
 echo $body;
+```
 
+Instalatutako 'package'-ak 'vendor' direktorioan gordetzen dira. Instalatu denaren informazioa 'composer.json' fitxategian.
+
+composer.json:
+```
+{
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}
+```
+
+'composer.json' Fitxategia erabiliz gure proiektuak behar dituen package guztiak instala daitzeke:
+```
+composer update
 ```
 
 # Ariketa nagusia: 'TOP FILMAK'
