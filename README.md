@@ -1137,6 +1137,8 @@ composer.json:
 
 'composer.json' Fitxategia erabiliz gure proiektuak behar dituen package guztiak instala daitzeke:
 ```
+composer install
+edo
 composer update
 ```
 
