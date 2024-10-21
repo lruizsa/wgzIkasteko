@@ -2,502 +2,191 @@
 
 ## MVC adibidea
 
-(ChatGPT erabiliz: Eskaera: MVC eredua jarraitzen duen PHP adibide bat behar dut iksaleei erakusteko)
+(ChatGPT erabiliz: Eskaera: MVC eredua jarraitzen duen PHP adibide bat behar dut, namespaceak eta datubase bat erabiltzen duena ikasleei erakusteko)
 
-MVC (Model-View-Controller) arkitektura eredua erabiltzen duen PHP adibide sinple bat. Erabiltzaileak datu bat bidaltzen duen formulario bat eta datu horiek erakusteko orrialde bat izango ditu.
+MVC eredua (Model-View-Controller) oso erabilia da garapen web aplikazioetan, eta PHP-rekin lan egitean, ohikoa da framework-ak erabiltzea, hala nola Laravel edo Symfony. Hala ere, framework-ik gabe ere MVC eredua ezarri daiteke PHPn. Hemen adibide sinple bat ikusiko dugu, namespace-ak eta datu-base bat erabiliz, zure ikasleei nola antolatu erakusteko.
 
-1. Proiektuko Egitura
+### 1. Direktorio egitura:
+
 ```bash
-/my_mvc_app
-    /controllers
-        UserController.php
-    /models
-        User.php
-    /views
-        user_form.php
-        user_list.php
-    /public
-        index.php
-```
-2. Modeloa: User.php
-
-```php
-<?php
-// models/User.php
-
-class User {
-    private $name;
-
-    public function __construct($name) {
-        $this->name = $name;
-    }
-
-    public function getName() {
-        return $this->name;
-    }
-}
-```
-3. Kontroladorea: UserController.php
-
-```php
-<?php
-// controllers/UserController.php
-
-require_once '../models/User.php';
-
-class UserController {
-    private $users = [];
-
-    public function addUser($name) {
-        $user = new User($name);
-        $this->users[] = $user;
-    }
-
-    public function getUsers() {
-        return $this->users;
-    }
-}
-```
-   
-4. Ikuslea: user_form.php
-
-```php
-<!-- views/user_form.php -->
-<!DOCTYPE html>
-<html lang="eu">
-<head>
-    <meta charset="UTF-8">
-    <title>Erabiltzailea Gehitu</title>
-</head>
-<body>
-    <h1>Erabiltzailea Gehitu</h1>
-    <form action="index.php" method="POST">
-        <input type="text" name="name" placeholder="Sartu izena" required>
-        <button type="submit">Gehitu</button>
-    </form>
-</body>
-</html>
-```
-
-5. Ikuslea: user_list.php
-
-```php
-<!-- views/user_list.php -->
-<!DOCTYPE html>
-<html lang="eu">
-<head>
-    <meta charset="UTF-8">
-    <title>Erabiltzaileen Zerrenda</title>
-</head>
-<body>
-    <h1>Erabiltzaileen Zerrenda</h1>
-    <ul>
-        <?php foreach ($users as $user): ?>
-            <li><?php echo htmlspecialchars($user->getName()); ?></li>
-        <?php endforeach; ?>
-    </ul>
-    <a href="index.php">Itzuli formularioara</a>
-</body>
-</html>
-```
-
-6.Sarrera Puntua: index.php 
-
-```php
-<?php
-// public/index.php
-
-require_once '../controllers/UserController.php';
-
-session_start();
-
-$userController = new UserController();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-    $userController->addUser($_POST['name']);
-    $_SESSION['users'] = $userController->getUsers();
-}
-
-$users = isset($_SESSION['users']) ? $_SESSION['users'] : [];
-
-if (empty($users)) {
-    include '../views/user_form.php';
-} else {
-    include '../views/user_list.php';
-}
-```
-
-Azalpena
-
-- Modeloa (User): Datuak (izena) kudeatzen ditu.
-- Kontroladorea (UserController): Erabiltzaileen izenak gehitzen eta lortzen ditu.
-- Ikusleak (user_form.php eta user_list.php): Datuak sartzeko eta erakusteko orrialdeak.
-
-Sarrera Puntua (index.php): Erabiltzailearen interakzioak kudeatzen ditu.
-
-## Datu basea erabiliz
-
-(ChatGPT: eta datu base bat erabiliz? adibidez mariadb)
-
-Proiektu egitura:
-```bash
-/my_mvc_app
-    /controllers
-        UserController.php
-    /models
-        User.php
-    /views
-        user_form.php
-        user_list.php
-    /public
-        index.php
+/mvc-example
+    /app
+        /controllers
+            HomeController.php
+        /models
+            User.php
+        /views
+            home.php
     /config
-        database.php
-
+        config.php
+    /public
+        index.php
+    /vendor
 ```
 
-1. Datu Basea Konfigurazioa: database.php
+### 2. Datu-basearen konfigurazioa (MySQL adibidean)
+
+Sortu config/config.php fitxategia, datu-basearen konfigurazioarekin:
+
 ```php
 <?php
-// config/database.php
 
-$host = 'localhost';
-$db   = 'your_database_name';
-$user = 'your_username';
-$pass = 'your_password';
-$charset = 'utf8mb4';
+namespace Config;
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+use PDO;
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+class Database {
+    private static $instance = null;
+    private $connection;
+
+    private function __construct() {
+        $host = 'localhost';
+        $dbname = 'my_database';
+        $username = 'root';
+        $password = '';
+
+        $this->connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new Database();
+        }
+
+        return self::$instance;
+    }
+
+    public function getConnection() {
+        return $this->connection;
+    }
 }
-
 ```
 
-2. Modeloa: User.php
+### 3. Modeloa: User eredua
+
+Sortu app/models/User.php fitxategia:
+
 ```php
 <?php
-// models/User.php
 
-require_once '../config/database.php';
+namespace Models;
+
+use Config\Database;
 
 class User {
-    private $pdo;
+    private $db;
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct() {
+        $this->db = Database::getInstance()->getConnection();
     }
 
-    public function create($name) {
-        $stmt = $this->pdo->prepare("INSERT INTO users (name) VALUES (:name)");
-        $stmt->execute(['name' => $name]);
-    }
-
-    public function getAll() {
-        $stmt = $this->pdo->query("SELECT * FROM users");
+    public function getAllUsers() {
+        $stmt = $this->db->prepare("SELECT * FROM users");
+        $stmt->execute();
         return $stmt->fetchAll();
     }
 }
-
 ```
 
-3. Kontroladorea: UserController.php
+### 4. Kontrolatzailea: HomeController
+
+Sortu app/controllers/HomeController.php fitxategia:
+
 ```php
 <?php
-// controllers/UserController.php
 
-require_once '../models/User.php';
+namespace Controllers;
 
-class UserController {
-    private $userModel;
+use Models\User;
 
-    public function __construct($pdo) {
-        $this->userModel = new User($pdo);
-    }
+class HomeController {
+    public function index() {
+        $userModel = new User();
+        $users = $userModel->getAllUsers();
 
-    public function addUser($name) {
-        $this->userModel->create($name);
-    }
-
-    public function getUsers() {
-        return $this->userModel->getAll();
+        // Igo erabiltzaileak ikusteko
+        require_once __DIR__ . '/../views/home.php';
     }
 }
-
 ```
 
-4. Ikuslea: user_form.php
-```html
-<!-- views/user_form.php -->
-<!DOCTYPE html>
-<html lang="eu">
-<head>
-    <meta charset="UTF-8">
-    <title>Erabiltzailea Gehitu</title>
-</head>
-<body>
-    <h1>Erabiltzailea Gehitu</h1>
-    <form action="index.php" method="POST">
-        <input type="text" name="name" placeholder="Sartu izena" required>
-        <button type="submit">Gehitu</button>
-    </form>
-</body>
-</html>
+5. Bista: home.php
 
-```
+Sortu app/views/home.php fitxategia:
 
-5. Ikuslea: user_list.php
 ```php
-<!-- views/user_list.php -->
 <!DOCTYPE html>
-<html lang="eu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Erabiltzaileen Zerrenda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
 </head>
 <body>
-    <h1>Erabiltzaileen Zerrenda</h1>
+    <h1>User List</h1>
     <ul>
         <?php foreach ($users as $user): ?>
-            <li><?php echo htmlspecialchars($user['name']); ?></li>
+            <li><?php echo htmlspecialchars($user['name']); ?> - <?php echo htmlspecialchars($user['email']); ?></li>
         <?php endforeach; ?>
     </ul>
-    <a href="index.php">Itzuli formularioara</a>
 </body>
 </html>
-
 ```
 
-6. Sarrera Puntua: index.php
+### 6. index.php: Sarrera puntua
+
+Sortu public/index.php fitxategia:
+
 ```php
 <?php
-// public/index.php
 
-require_once '../config/database.php';
-require_once '../controllers/UserController.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../app/models/User.php';
+require_once __DIR__ . '/../app/controllers/HomeController.php';
 
-session_start();
+use Controllers\HomeController;
 
-$userController = new UserController($pdo);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-    $userController->addUser($_POST['name']);
-}
-
-$users = $userController->getUsers();
-
-if (empty($users)) {
-    include '../views/user_form.php';
-} else {
-    include '../views/user_list.php';
-}
-
+// Url-aren arabera, kontrolatzaile ezberdinak bideratuko dira
+$controller = new HomeController();
+$controller->index();
 ```
 
-7. Datu Basea Sortzea
+### 7. Composer autoload (namespace-ak erabiltzeko)
+
+composer.json fitxategia sortu erro karpetan, autoload ezartzeko:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "app/controllers/",
+            "Models\\": "app/models/",
+            "Config\\": "config/"
+        }
+    }
+}
+```
+
+Ondoren, exekutatu composer dump-autoload komandoa terminalean.
+
+### 8. Datu-basea
+
+Datu-base sinple bat ere sortu behar duzu erabiltzaileak gordetzeko. Adibidez, MySQLn hurrengo komandoa erabiliz:
+
 ```sql
+CREATE DATABASE my_database;
+USE my_database;
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );
 
+INSERT INTO users (name, email) VALUES ('Jon', 'jon@example.com'), ('Ane', 'ane@example.com');
 ```
 
-Azalpena
+Amaiera
 
-- Datu Basea Konfigurazioa: database.php fitxategiak datu-basearen konexioa kudeatzen du.
-- Modeloa (User): User modeloak datu-basean erabiltzaileak sortu eta irakurri ditu.
-- Kontroladorea (UserController): Erabiltzaileen datuak kudeatzen ditu.
-- Ikusleak (user_form.php eta user_list.php): Formularioa eta erabiltzaileen zerrenda erakusten ditu.
-- Sarrera Puntua (index.php): Erabiltzailearen interakzioak kudeatzen ditu.
-
-## Proiektua handitu. Modelo eta kontroladore gehiago
-
-(ChatGPT: Proiektu hau handitzeko, beste modelo eta kontroladore gehiagoren adibideak jar ditzakezu?)
-
-kontzeptua antzekoa izango da, baina beste entitate batzuen datuak kudeatuko ditugu. Adibide honetan, “Post” modelo eta kontroladorea gehituko ditugu
-
-Proiektuko Egitura
-```bash
-/my_mvc_app
-    /controllers
-        UserController.php
-        PostController.php
-    /models
-        User.php
-        Post.php
-    /views
-        user_form.php
-        user_list.php
-        post_form.php
-        post_list.php
-    /public
-        index.php
-    /config
-        database.php
-
-```
-
-1. Datu Basea Sortzea
-```sql
-CREATE TABLE posts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-```
-
-2. Modeloa: Post.php
-```php
-<?php
-// models/Post.php
-
-require_once '../config/database.php';
-
-class Post {
-    private $pdo;
-
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
-    }
-
-    public function create($title, $content, $user_id) {
-        $stmt = $this->pdo->prepare("INSERT INTO posts (title, content, user_id) VALUES (:title, :content, :user_id)");
-        $stmt->execute(['title' => $title, 'content' => $content, 'user_id' => $user_id]);
-    }
-
-    public function getAll() {
-        $stmt = $this->pdo->query("SELECT * FROM posts");
-        return $stmt->fetchAll();
-    }
-}
-
-```
-
-3. Kontroladorea: PostController.php
-
-```php
-<?php
-// controllers/PostController.php
-
-require_once '../models/Post.php';
-
-class PostController {
-    private $postModel;
-
-    public function __construct($pdo) {
-        $this->postModel = new Post($pdo);
-    }
-
-    public function addPost($title, $content, $user_id) {
-        $this->postModel->create($title, $content, $user_id);
-    }
-
-    public function getPosts() {
-        return $this->postModel->getAll();
-    }
-}
-
-```
-
-4. Ikuslea: post_form.php
-```php
-<!-- views/post_form.php -->
-<!DOCTYPE html>
-<html lang="eu">
-<head>
-    <meta charset="UTF-8">
-    <title>Posta Gehitu</title>
-</head>
-<body>
-    <h1>Posta Gehitu</h1>
-    <form action="index.php" method="POST">
-        <input type="text" name="title" placeholder="Postaren izena" required>
-        <textarea name="content" placeholder="Edukia" required></textarea>
-        <input type="hidden" name="user_id" value="<?php echo $_GET['user_id']; ?>">
-        <button type="submit">Gehitu</button>
-    </form>
-</body>
-</html>
-
-```
-
-5. Ikuslea: post_list.php
-```
-<!-- views/post_list.php -->
-<!DOCTYPE html>
-<html lang="eu">
-<head>
-    <meta charset="UTF-8">
-    <title>Posten Zerrenda</title>
-</head>
-<body>
-    <h1>Posten Zerrenda</h1>
-    <ul>
-        <?php foreach ($posts as $post): ?>
-            <li>
-                <strong><?php echo htmlspecialchars($post['title']); ?></strong><br>
-                <?php echo htmlspecialchars($post['content']); ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-    <a href="index.php">Itzuli formularioara</a>
-</body>
-</html>
-
-```
-
-6. Sarrera Puntua: index.php (eguneratuta)
-```php
-<?php
-// public/index.php
-
-require_once '../config/database.php';
-require_once '../controllers/UserController.php';
-require_once '../controllers/PostController.php';
-
-session_start();
-
-$userController = new UserController($pdo);
-$postController = new PostController($pdo);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
-    $userController->addUser($_POST['name']);
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
-    $postController->addPost($_POST['title'], $_POST['content'], $_POST['user_id']);
-}
-
-$users = $userController->getUsers();
-$posts = $postController->getPosts();
-
-if (empty($users)) {
-    include '../views/user_form.php';
-} elseif (empty($posts)) {
-    include '../views/post_form.php';
-} else {
-    include '../views/post_list.php';
-}
-
-```
-
-Azalpena
-
-- Post Modeloa (Post): Posten datuak kudeatzen ditu, erabiltzaileek idatzitako postak.
-- Post Kontroladorea (PostController): Postak gehitu eta irakurtzeko logika kudeatzen du.
-- Ikusleak (post_form.php eta post_list.php): Posta gehitzeko formularioa eta posten zerrenda erakusten ditu.
-- Sarrera Puntua (index.php): Erabiltzailearen eta postaren interakzioak kudeatzen ditu.
-
-  
+Hau adibide sinple bat da, namespace-ak eta datu-basea erabiltzen dituen PHP MVC eredua erakusteko. Aplikazioa arakatzailean exekutatzeko, sartu public/index.php URLan. Honek erakutsiko du datu-basetik ateratako erabiltzaileen zerrenda.
