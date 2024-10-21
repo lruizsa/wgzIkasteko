@@ -111,7 +111,7 @@ class HomeController {
 }
 ```
 
-5. Bista: home.php
+### 5. Bista: home.php
 
 Sortu app/views/home.php fitxategia:
 
