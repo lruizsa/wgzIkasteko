@@ -15,7 +15,6 @@ https://laravel.com/docs/11.x/installation
  Success! ─────────────────────────────────────────────────────────
 │ php, composer, and laravel have been installed successfully.
 │ Please restart your terminal or run 'source /home/ubuntu/.bashrc' to update your PATH.
-
 ```
 ```bash
 composer global require laravel/installer
@@ -31,6 +30,7 @@ sudo mysql_secure_installation
 sudo mariadb-secure-installation
 ```
 
+laravel:
 ```bash
 laravel new example-app
 
