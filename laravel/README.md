@@ -31,6 +31,14 @@ sudo mysql_secure_installation
 sudo mariadb-secure-installation
 ```
 
+```bash
+laravel new example-app
+
+cd example-app
+php artisan migrate
+php artisan serve
+```
+
 github:
 
 *.gitignore-tik .env lerroa kendu (git add .env)
