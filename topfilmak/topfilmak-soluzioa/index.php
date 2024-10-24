@@ -76,7 +76,7 @@ $films = $stmt->fetchAll();
     <div class="container">
         <h1 class="text-center my-4"><?php echo $_SESSION['username'];?>&nbsp;Filmen Zerrenda</h1>
         <form action="logout.php" method="GET">
-            <button type="submit" class="btn btn-primary">Logout</button>
+            <button type="submit" class="btn btn-primary" name="logout">Logout</button>
         </form>
         <div class="row">
             <div class="col-md-8">
