@@ -61,7 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Zerrenda erakutsi
 $stmt = $conn->prepare("SELECT * FROM films WHERE user = :user");
 $stmt->execute(['user' => $_SESSION['username']]);
-$films = $stmt->fetchAll();
+$films = $stmt->fetchAll();    
+
 ?>
 
 <!DOCTYPE html>
@@ -91,19 +92,19 @@ $films = $stmt->fetchAll();
                 </ul>
             </div>
             <div class="col-md-4">
-                <h2>Filma Gehitu</h2>
+                <h2>Filma kudeatu</h2>
                 <form action="index.php" method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Izena:</label>
-                        <input type="text" class="form-control" name="name" required>
+                        <input type="text" class="form-control" name="name">
                     </div>
                     <div class="mb-3">
                         <label for="isan" class="form-label">ISAN:</label>
-                        <input type="text" class="form-control" name="isan" required>
+                        <input type="text" class="form-control" name="isan">
                     </div>
                     <div class="mb-3">
                         <label for="year" class="form-label">Urtea:</label>
-                        <input type="number" class="form-control" name="year" required>
+                        <input type="number" class="form-control" name="year">
                     </div>
                     <div class="mb-3">
                         <label for="rating" class="form-label">Puntuazioa:</label>
@@ -116,7 +117,8 @@ $films = $stmt->fetchAll();
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Gehitu Filma</button>
+                    <button type="submit" class="btn btn-primary">Filma kudeatu</button>
+                    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
                 </form>
             </div>
         </div>
