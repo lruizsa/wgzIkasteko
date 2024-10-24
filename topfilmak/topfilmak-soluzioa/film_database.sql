@@ -1,0 +1,19 @@
+CREATE DATABASE film_database;
+
+USE film_database;
+
+CREATE TABLE films (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    isan VARCHAR(8) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    rating INT NOT NULL,
+    user VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

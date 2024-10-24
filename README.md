@@ -1144,7 +1144,7 @@ composer update
 
 # Ariketa nagusia: 'TOP FILMAK'
 
-[Top filmak ariketa](topmovies.md)
+[Top filmak ariketa](topfilmak/README.md)
 
 
 ## PHP tutoriala (jarraipena)
