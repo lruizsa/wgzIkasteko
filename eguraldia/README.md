@@ -1,7 +1,7 @@
 # Eguraldia iragarpena
 
-Eguraldiaren iragarpena egiten duen Web aplikazioa garatu behar duzue. Aplikazioak udalerrien iragarpena egingo du.  
+Eguraldiaren iragarpena egiten duen Web aplikazioa garatu behar duzue. Aplikazioak, udalerrien iragarpena egingo du:
 
-- https://www.euskalmet.euskadi.eus/hasiera/
-- https://www.aemet.es/eu/portada
+![eguraldi-iragarpena](eguraldi-iragarpena.png)
 
+Beharrezko dituzun datuak [euskalmet](https://www.euskalmet.euskadi.eus/hasiera/) edo [aemet](https://www.aemet.es/eu/portada) web guneetatik hartu ditzakezue.
