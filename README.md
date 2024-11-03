@@ -1153,6 +1153,9 @@ composer update
 
 [MVC](MVC/README.md)
 
+# Ariketa: 'Eguraldiaren iragarpena'
+
+[Eguraldiaren iragarpena](eguraldia/README.md)
 
 # laravel
 
