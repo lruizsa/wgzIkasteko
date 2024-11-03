@@ -18,7 +18,7 @@ Beharrezko dituzun datuak (irudiak, tenperatura, prezipitazioa, haizea, ...) [eu
 
 DB proposamena (*zuek aldatu edo egokitu dezakezue):
 
-```bash
+```ascii
 +--------+           +------------------+           +-------------------+
 | herria |---<1:N>---| iragarpena-eguna |---<1:N>---| iragarpena-orduko |
 +--------+           +------------------+           +-------------------+
