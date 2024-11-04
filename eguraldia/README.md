@@ -10,7 +10,7 @@ Eguraldiaren iragarpena egiten duen Web aplikazioa garatu behar duzue. Aplikazio
 
 ![eguraldi-iragarpena](eguraldi-iragarpena.png)
 
-Beharrezko dituzun datuak (irudiak, tenperatura, prezipitazioa, haizea, ...) [euskalmet](https://www.euskalmet.euskadi.eus/hasiera/) edo [aemet](https://www.aemet.es/eu/portada) web guneetatik hartu ditzakezue.
+Beharrezko dituzun datuak (irudiak, tenperatura, prezipitazioa, haizea, ...) [euskalmet](https://www.euskalmet.euskadi.eus/hasiera/) edo [aemet](https://www.aemet.es/eu/portada) web guneetatik hartu ditzakezue. Udalerrien zerrenda https://www.euskalmet.euskadi.eus/media/assets/resources/webmet00-locations.json
 
 - Uneko iragarpena (orain)
 - Gaurko, biharko eta etziko iragarpena orduka
