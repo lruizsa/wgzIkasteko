@@ -58,8 +58,7 @@ Visual Code:
 Addons-ak:
 - docker
 - PHP Intelephense
-- PHP devsense all-in-one
-- laravel(?)
+(Aukerazkoa: PHP devsense all-in-one)
 
 ### GIT
 
