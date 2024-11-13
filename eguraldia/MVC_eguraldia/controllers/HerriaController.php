@@ -40,6 +40,16 @@ class HerriaController {
         //echo "<pre>"; var_dump($herriak);echo "</pre>";
         //require_once '../views/herri-zerrenda.php';
         require_once '../views/herrien-kudeaketa.php';
+    }
+
+    public function herriaAldatu($id, $izenBerria){
+        //var_dump($izena);
+        $herria = new Herria();
+        $herria->update($id, $izenBerria);
+        $herriak = $herria->getAll();
+        //echo "<pre>"; var_dump($herriak);echo "</pre>";
+        //require_once '../views/herri-zerrenda.php';
+        require_once '../views/herrien-kudeaketa.php';
     }    
 
 }

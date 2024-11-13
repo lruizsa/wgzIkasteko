@@ -30,7 +30,15 @@ class Herria {
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         return $stmt->execute();
-    }     
+    }
+
+    public function update($id, $izenBerria) {
+        $query = "UPDATE herria SET izena = :izenBerria WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":izenBerria", $izenBerria, PDO::PARAM_STR);
+        return $stmt->execute();
+    }         
 
     // herria lortu id erabiliz
     public function get($id) {
