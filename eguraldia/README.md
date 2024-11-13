@@ -39,3 +39,38 @@ iragarpena-orduko:
 - haizea-nondik
 - haizea-km/h
 ```
+## MVC
+
+```ascii
+             [user]
+                |
+                |<------------------ +
+                |                    |
+                v                    |
+         (Public/Router)             |
+                |                    |
+                |                    |
+                v                    |
+(model)<===>(Controller)---->(view)->+
+```
+
+```ascii
+/MVC_eguraldia
+├── models/
+│   ├── Herria.php
+│   ├── IragarpenEguna.php
+│   └── IragarpenaOrduko.php
+├── views/
+│   ├── Herri-zerrenda.php
+│   └── ...
+├── controllers/
+│   ├── HerriaController.php
+│   ├── IragarpenEgunaController.php
+│   └── IragarpenaOrdukoController.php
+├── public/
+│   ├── index.php
+│   ├── herriak.php
+│   └── ...
+└── config/
+    └── config.php
+```
